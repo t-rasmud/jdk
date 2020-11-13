@@ -31,12 +31,15 @@ import org.checkerframework.checker.index.qual.IndexOrHigh;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.lock.qual.GuardSatisfied;
 import org.checkerframework.checker.lock.qual.ReleasesNoLocks;
+import org.checkerframework.checker.nonempty.qual.NonEmpty;
+import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.checker.nullness.qual.PolyNull;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
 import org.checkerframework.framework.qual.CFComment;
+import org.checkerframework.framework.qual.EnsuresQualifier;
 
 import java.util.function.UnaryOperator;
 
@@ -195,7 +198,7 @@ public interface List<E> extends Collection<E> {
      * @return an iterator over the elements in this list in proper sequence
      */
     @SideEffectFree
-    Iterator<E> iterator();
+    @PolyNonEmpty Iterator<E> iterator(@PolyNonEmpty Iterator<E> this);
 
     /**
      * Returns an array containing all of the elements in this list in proper
@@ -284,6 +287,7 @@ public interface List<E> extends Collection<E> {
      *         prevents it from being added to this list
      */
     @ReleasesNoLocks
+    @EnsuresQualifier(expression = "this", qualifier = NonEmpty.class)
     boolean add(@GuardSatisfied List<E> this, E e);
 
     /**

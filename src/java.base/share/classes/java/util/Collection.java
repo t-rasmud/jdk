@@ -27,12 +27,15 @@ package java.util;
 
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.lock.qual.GuardSatisfied;
+import org.checkerframework.checker.nonempty.qual.NonEmpty;
+import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.checker.nullness.qual.PolyNull;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
 import org.checkerframework.framework.qual.CFComment;
+import org.checkerframework.framework.qual.EnsuresQualifier;
 
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
@@ -279,7 +282,7 @@ public interface Collection<E> extends Iterable<E> {
      * @return an {@code Iterator} over the elements in this collection
      */
     @SideEffectFree
-    Iterator<E> iterator();
+    @PolyNonEmpty Iterator<E> iterator(@PolyNonEmpty Iterator<E> this);
 
     /**
      * Returns an array containing all of the elements in this collection.
@@ -438,6 +441,7 @@ public interface Collection<E> extends Iterable<E> {
      * @throws IllegalStateException if the element cannot be added at this
      *         time due to insertion restrictions
      */
+    @EnsuresQualifier(expression = "this", qualifier = NonEmpty.class)
     boolean add(@GuardSatisfied Collection<E> this, E e);
 
     /**
@@ -510,6 +514,7 @@ public interface Collection<E> extends Iterable<E> {
      *         this time due to insertion restrictions
      * @see #add(Object)
      */
+    @EnsuresQualifier(expression = "this", qualifier = NonEmpty.class)
     boolean addAll(@GuardSatisfied Collection<E> this, Collection<? extends E> c);
 
     /**
