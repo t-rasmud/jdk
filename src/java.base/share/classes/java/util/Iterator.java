@@ -25,11 +25,13 @@
 
 package java.util;
 
+import org.checkerframework.checker.iteration.qual.HasNext;
 import org.checkerframework.checker.lock.qual.GuardSatisfied;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.framework.qual.AnnotatedFor;
 import org.checkerframework.framework.qual.CFComment;
 import org.checkerframework.framework.qual.Covariant;
+import org.checkerframework.framework.qual.EnsuresQualifierIf;
 
 import java.util.function.Consumer;
 
@@ -75,6 +77,7 @@ public interface Iterator<E> {
      * @return {@code true} if the iteration has more elements
      */
     @Pure
+    @EnsuresQualifierIf(result = true, expression = "this", qualifier = HasNext.class)
     boolean hasNext(@GuardSatisfied Iterator<E> this);
 
     /**
@@ -83,7 +86,7 @@ public interface Iterator<E> {
      * @return the next element in the iteration
      * @throws NoSuchElementException if the iteration has no more elements
      */
-    E next(@GuardSatisfied Iterator<E> this);
+    E next(@HasNext @GuardSatisfied Iterator<E> this);
 
     /**
      * Removes from the underlying collection the last element returned
