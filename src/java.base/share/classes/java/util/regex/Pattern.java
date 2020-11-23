@@ -1140,6 +1140,7 @@ public final @UsesObjectEquals class Pattern
      *
      * @return  A new matcher for this pattern
      */
+    @SideEffectFree
     public @PolyRegex @PolyDet Matcher matcher(@PolyDet @PolyRegex Pattern this, @PolyDet CharSequence input) {
         if (!compiled) {
             synchronized(this) {

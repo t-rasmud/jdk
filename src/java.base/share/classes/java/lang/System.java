@@ -747,6 +747,7 @@ public final @UsesObjectEquals class System {
      * @return the system-dependent line separator string
      * @since 1.7
      */
+    @Pure
     public static @Det String lineSeparator() {
         return lineSeparator;
     }
