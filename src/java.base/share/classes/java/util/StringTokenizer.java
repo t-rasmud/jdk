@@ -105,7 +105,7 @@ import java.lang.*;
  * @see     java.io.StreamTokenizer
  * @since   1.0
  */
-@AnnotatedFor({"index", "interning", "lock", "nullness"})
+@AnnotatedFor({"determinism", "index", "interning", "lock", "nullness"})
 public
 @UsesObjectEquals class StringTokenizer implements Enumeration<Object> {
     private int currentPosition;
@@ -198,7 +198,7 @@ public
      *                         as tokens.
      * @exception NullPointerException if str is {@code null}
      */
-    public StringTokenizer(String str, @Nullable String delim, boolean returnDelims) {
+    public @PolyDet StringTokenizer(@PolyDet String str, @PolyDet @Nullable String delim, @PolyDet boolean returnDelims) {
         currentPosition = 0;
         newPosition = -1;
         delimsChanged = false;
@@ -224,7 +224,7 @@ public
      * @param   delim   the delimiters.
      * @exception NullPointerException if str is {@code null}
      */
-    public StringTokenizer(String str, @Nullable String delim) {
+    public @PolyDet StringTokenizer(@PolyDet String str, @PolyDet @Nullable String delim) {
         this(str, delim, false);
     }
 
@@ -239,7 +239,7 @@ public
      * @param   str   a string to be parsed.
      * @exception NullPointerException if str is {@code null}
      */
-    public StringTokenizer(String str) {
+    public @PolyDet StringTokenizer(@PolyDet String str) {
         this(str, " \t\n\r\f", false);
     }
 
