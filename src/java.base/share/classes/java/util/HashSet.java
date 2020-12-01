@@ -182,7 +182,7 @@ public class HashSet<E>
      * @see ConcurrentModificationException
      */
     @SideEffectFree
-    public @PolyNonEmpty Iterator<E> iterator(@PolyNonEmpty Iterator<E> this) {
+    public Iterator<E> iterator() {
         return map.keySet().iterator();
     }
 
