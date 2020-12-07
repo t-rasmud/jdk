@@ -30,6 +30,7 @@ import org.checkerframework.checker.index.qual.LTLengthOf;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.interning.qual.UsesObjectEquals;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.checkerframework.dataflow.qual.SideEffectsOnly;
 import org.checkerframework.framework.qual.AnnotatedFor;
 
 import java.util.Objects;
@@ -197,6 +198,7 @@ public abstract @UsesObjectEquals class Writer implements Appendable, Closeable,
      * @throws  IOException
      *          If an I/O error occurs
      */
+    @SideEffectsOnly("this")
     public void write(int c) throws IOException {
         synchronized (lock) {
             if (writeBuffer == null){

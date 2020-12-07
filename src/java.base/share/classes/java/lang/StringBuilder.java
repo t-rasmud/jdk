@@ -33,6 +33,7 @@ import org.checkerframework.checker.lock.qual.GuardSatisfied;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.SideEffectsOnly;
 import org.checkerframework.framework.qual.AnnotatedFor;
 
 import jdk.internal.HotSpotIntrinsicCandidate;
@@ -175,12 +176,14 @@ public final class StringBuilder
     }
 
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(@Nullable Object obj) {
         return append(String.valueOf(obj));
     }
 
     @Override
     @HotSpotIntrinsicCandidate
+    @SideEffectsOnly("this")
     public StringBuilder append(@Nullable String str) {
         super.append(str);
         return this;
@@ -205,12 +208,14 @@ public final class StringBuilder
      * @param   sb   the {@code StringBuffer} to append.
      * @return  a reference to this object.
      */
+    @SideEffectsOnly("this")
     public StringBuilder append(@Nullable StringBuffer sb) {
         super.append(sb);
         return this;
     }
 
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(@Nullable CharSequence s) {
         super.append(s);
         return this;
@@ -220,12 +225,14 @@ public final class StringBuilder
      * @throws     IndexOutOfBoundsException {@inheritDoc}
      */
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(@Nullable CharSequence s, @IndexOrHigh({"#1"}) int start, @IndexOrHigh({"#1"}) int end) {
         super.append(s, start, end);
         return this;
     }
 
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(char[] str) {
         super.append(str);
         return this;
@@ -235,12 +242,14 @@ public final class StringBuilder
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(char[] str, @IndexOrHigh({"#1"}) int offset, @LTLengthOf(value={"#1"}, offset={"#2 - 1"}) @NonNegative int len) {
         super.append(str, offset, len);
         return this;
     }
 
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(boolean b) {
         super.append(b);
         return this;
@@ -248,6 +257,7 @@ public final class StringBuilder
 
     @Override
     @HotSpotIntrinsicCandidate
+    @SideEffectsOnly("this")
     public StringBuilder append(char c) {
         super.append(c);
         return this;
@@ -255,24 +265,28 @@ public final class StringBuilder
 
     @Override
     @HotSpotIntrinsicCandidate
+    @SideEffectsOnly("this")
     public StringBuilder append(int i) {
         super.append(i);
         return this;
     }
 
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(long lng) {
         super.append(lng);
         return this;
     }
 
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(float f) {
         super.append(f);
         return this;
     }
 
     @Override
+    @SideEffectsOnly("this")
     public StringBuilder append(double d) {
         super.append(d);
         return this;
