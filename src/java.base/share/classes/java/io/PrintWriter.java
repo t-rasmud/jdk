@@ -40,6 +40,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.IllegalCharsetNameException;
 import java.nio.charset.UnsupportedCharsetException;
 
+import org.checkerframework.dataflow.qual.SideEffectsOnly;
+
 /**
  * Prints formatted representations of objects to a text-output stream.  This
  * class implements all of the {@code print} methods found in {@link
@@ -596,6 +598,7 @@ public class PrintWriter extends Writer {
      *
      * @param      b   The {@code boolean} to be printed
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, boolean b) {
         write(String.valueOf(b));
     }
@@ -608,6 +611,7 @@ public class PrintWriter extends Writer {
      *
      * @param      c   The {@code char} to be printed
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, char c) {
         write(c);
     }
@@ -622,6 +626,7 @@ public class PrintWriter extends Writer {
      * @param      i   The {@code int} to be printed
      * @see        java.lang.Integer#toString(int)
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, int i) {
         write(String.valueOf(i));
     }
@@ -636,6 +641,7 @@ public class PrintWriter extends Writer {
      * @param      l   The {@code long} to be printed
      * @see        java.lang.Long#toString(long)
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, long l) {
         write(String.valueOf(l));
     }
@@ -650,6 +656,7 @@ public class PrintWriter extends Writer {
      * @param      f   The {@code float} to be printed
      * @see        java.lang.Float#toString(float)
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, float f) {
         write(String.valueOf(f));
     }
@@ -664,6 +671,7 @@ public class PrintWriter extends Writer {
      * @param      d   The {@code double} to be printed
      * @see        java.lang.Double#toString(double)
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, double d) {
         write(String.valueOf(d));
     }
@@ -678,6 +686,7 @@ public class PrintWriter extends Writer {
      *
      * @throws  NullPointerException  If {@code s} is {@code null}
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, char s[]) {
         write(s);
     }
@@ -691,6 +700,7 @@ public class PrintWriter extends Writer {
      *
      * @param      s   The {@code String} to be printed
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, @Nullable String s) {
         write(String.valueOf(s));
     }
@@ -705,6 +715,7 @@ public class PrintWriter extends Writer {
      * @param      obj   The {@code Object} to be printed
      * @see        java.lang.Object#toString()
      */
+    @SideEffectsOnly("this")
     public void print(@GuardSatisfied PrintWriter this, @Nullable Object obj) {
         write(String.valueOf(obj));
     }
