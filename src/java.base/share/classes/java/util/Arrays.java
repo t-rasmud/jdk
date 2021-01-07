@@ -1450,7 +1450,7 @@ public class Arrays {
      * @throws IllegalArgumentException (optional) if the comparator is
      *         found to violate the {@link Comparator} contract
      */
-    public static <@PolyDet("down") T extends @PolyDet("down") Object> void sort(T @PolyDet[] a, @PolyDet("use") @Nullable Comparator<? super T> c) {
+    public static <T extends @PolyDet("use") Object> void sort(T @PolyDet[] a, @PolyDet("use") @Nullable Comparator<? super T> c) {
         if (c == null) {
             sort(a);
         } else {
