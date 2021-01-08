@@ -3583,7 +3583,7 @@ public final @Interned class Class<@UnknownKeyFor T> implements java.io.Serializ
      *     represent an enum type
      * @since 1.5
      */
-    public @NonNull T @PolyDet @Nullable [] getEnumConstants(@PolyDet Class<T> this) {
+    public @NonNull @PolyDet T @Nullable @PolyDet("upDet") [] getEnumConstants(@PolyDet Class<T> this) {
         T[] values = getEnumConstantsShared();
         return (values != null) ? values.clone() : null;
     }
