@@ -25,8 +25,11 @@
 
 package java.util;
 
+import org.checkerframework.checker.iteration.qual.HasNext;
 import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectsOnly;
 import org.checkerframework.framework.qual.AnnotatedFor;
+import org.checkerframework.framework.qual.EnsuresQualifierIf;
 
 /**
  * An object that implements the Enumeration interface generates a
@@ -74,6 +77,7 @@ public interface Enumeration<E> {
      *          {@code false} otherwise.
      */
     @Pure
+    @EnsuresQualifierIf(result = true, expression = "this", qualifier = HasNext.class)
     boolean hasMoreElements();
 
     /**
@@ -83,7 +87,8 @@ public interface Enumeration<E> {
      * @return     the next element of this enumeration.
      * @exception  NoSuchElementException  if no more elements exist.
      */
-    E nextElement();
+    @SideEffectsOnly("this")
+    E nextElement(@HasNext Enumeration<E> this);
 
     /**
      * Returns an {@link Iterator} that traverses the remaining elements
