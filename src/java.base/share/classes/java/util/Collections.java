@@ -28,6 +28,7 @@ package java.util;
 import org.checkerframework.checker.index.qual.GTENegativeOne;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.lock.qual.GuardSatisfied;
+import org.checkerframework.checker.nonempty.qual.NonEmpty;
 import org.checkerframework.checker.nullness.qual.EnsuresKeyFor;
 import org.checkerframework.checker.nullness.qual.EnsuresKeyForIf;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -4934,7 +4935,7 @@ public class Collections {
      * @return an immutable list containing only the specified object.
      * @since 1.3
      */
-    public static <T> @ArrayLen(1) List<T> singletonList(T o) {
+    public static <T> @ArrayLen(1) @NonEmpty List<T> singletonList(T o) {
         return new SingletonList<>(o);
     }
 
