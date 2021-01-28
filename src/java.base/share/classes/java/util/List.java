@@ -599,6 +599,7 @@ public interface List<E> extends Collection<E> {
      *         ({@code index < 0 || index >= size()})
      */
     @Pure
+    @SideEffectFree
     E get(@NonEmpty @GuardSatisfied List<E> this, @IndexFor({"this"}) int index);
 
     /**
