@@ -977,7 +977,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * @return a view of the values contained in this map
      */
     @SideEffectFree
-    public Collection<V> values(@GuardSatisfied HashMap<K, V> this) {
+    public @PolyNonEmpty Collection<V> values(@GuardSatisfied @PolyNonEmpty HashMap<K, V> this) {
         Collection<V> vs = values;
         if (vs == null) {
             vs = new Values();
