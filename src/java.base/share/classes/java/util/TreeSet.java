@@ -34,6 +34,8 @@ import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
 import org.checkerframework.framework.qual.CFComment;
 
+import org.checkerframework.dataflow.qual.SideEffectsOnly;
+
 /**
  * A {@link NavigableSet} implementation based on a {@link TreeMap}.
  * The elements are ordered using their {@linkplain Comparable natural
@@ -267,6 +269,7 @@ public class TreeSet<E> extends AbstractSet<E>
      *         and this set uses natural ordering, or its comparator
      *         does not permit null elements
      */
+    @SideEffectsOnly("this")
     public boolean add(@GuardSatisfied TreeSet<E> this, E e) {
         return m.put(e, PRESENT)==null;
     }
