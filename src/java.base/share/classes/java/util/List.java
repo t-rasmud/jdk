@@ -36,6 +36,7 @@ import org.checkerframework.checker.nonempty.qual.NonEmpty;
 import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.checker.nullness.qual.PolyNull;
+import org.checkerframework.checker.sizeof.qual.SizeOf;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
@@ -165,7 +166,7 @@ public interface List<E> extends Collection<E> {
      */
     @Pure
     @SideEffectFree
-    @NonNegative int size(@GuardSatisfied List<E> this);
+    @NonNegative @SizeOf("this") int size(@GuardSatisfied List<E> this);
 
     /**
      * Returns {@code true} if this list contains no elements.
