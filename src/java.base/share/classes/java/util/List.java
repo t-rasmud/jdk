@@ -602,7 +602,7 @@ public interface List<E> extends Collection<E> {
      */
     @Pure
     @SideEffectFree
-    E get(@NonEmpty @GuardSatisfied List<E> this, @IndexFor({"this"}) int index);
+    E get(@GuardSatisfied List<E> this, @IndexFor({"this"}) int index);
 
     /**
      * Replaces the element at the specified position in this list with the
