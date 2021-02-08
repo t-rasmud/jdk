@@ -34,6 +34,7 @@ import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.checker.nullness.qual.PolyNull;
+import org.checkerframework.checker.sizeof.qual.SizeOf;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
@@ -165,7 +166,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @throws IllegalArgumentException if the specified initial capacity
      *         is negative
      */
-    public @NonEmpty ArrayList(@PositiveInt @NonNegative int initialCapacity) {
+    public ArrayList(@NonNegative int initialCapacity) {
         if (initialCapacity > 0) {
             this.elementData = new Object[initialCapacity];
         } else if (initialCapacity == 0) {
@@ -297,7 +298,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @return the number of elements in this list
      */
     @Pure
-    public @NonNegative int size(@GuardSatisfied ArrayList<E> this) {
+    public @NonNegative @SizeOf("this") int size(@GuardSatisfied ArrayList<E> this) {
         return size;
     }
 
