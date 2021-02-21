@@ -164,7 +164,6 @@ public interface List<E> extends Collection<E> {
      * @return the number of elements in this list
      */
     @Pure
-    @SideEffectFree
     @NonNegative int size(@GuardSatisfied List<E> this);
 
     /**
@@ -600,7 +599,6 @@ public interface List<E> extends Collection<E> {
      *         ({@code index < 0 || index >= size()})
      */
     @Pure
-    @SideEffectFree
     E get(@GuardSatisfied List<E> this, @IndexFor({"this"}) int index);
 
     /**
