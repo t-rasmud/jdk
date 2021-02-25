@@ -32,6 +32,7 @@ import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
 import org.checkerframework.framework.qual.CFComment;
+import org.checkerframework.checker.nonempty.qual.NonEmpty;
 
 /**
  * A {@link Map} that further provides a <em>total ordering</em> on its keys.
@@ -219,7 +220,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         bounds of the range
      */
     @SideEffectFree
-    SortedMap<K,V> tailMap(@GuardSatisfied SortedMap<K, V> this, K fromKey);
+    @NonEmpty SortedMap<K,V> tailMap(@GuardSatisfied SortedMap<K, V> this, K fromKey);
 
     /**
      * Returns the first (lowest) key currently in this map.
