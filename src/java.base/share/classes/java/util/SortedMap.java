@@ -33,6 +33,7 @@ import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
 import org.checkerframework.framework.qual.CFComment;
 import org.checkerframework.checker.nonempty.qual.NonEmpty;
+import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
 
 /**
  * A {@link Map} that further provides a <em>total ordering</em> on its keys.
@@ -258,7 +259,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         ascending order
      */
     @SideEffectFree
-    Set<@KeyFor({"this"}) K> keySet(@GuardSatisfied SortedMap<K, V> this);
+    @PolyNonEmpty Set<@KeyFor({"this"}) K> keySet(@PolyNonEmpty @GuardSatisfied SortedMap<K, V> this);
 
     /**
      * Returns a {@link Collection} view of the values contained in this map.
