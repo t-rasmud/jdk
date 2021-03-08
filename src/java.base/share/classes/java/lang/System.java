@@ -38,6 +38,7 @@ import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.checkerframework.framework.qual.AnnotatedFor;
+import org.checkerframework.framework.qual.CFComment;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -127,6 +128,7 @@ public final @UsesObjectEquals class System {
      * corresponds to keyboard input or another input source specified by
      * the host environment or user.
      */
+    @CFComment("This field can be null. The Checker Framework conservatively annotates it as @NonNull, forbidding programs that set it to null.")
     public static final InputStream in = null;
 
     /**
@@ -154,6 +156,7 @@ public final @UsesObjectEquals class System {
      * @see     java.io.PrintStream#println(java.lang.Object)
      * @see     java.io.PrintStream#println(java.lang.String)
      */
+    @CFComment("This field can be null. The Checker Framework conservatively annotates it as @NonNull, forbidding programs that set it to null.")
     public static final PrintStream out = null;
 
     /**
@@ -168,6 +171,7 @@ public final @UsesObjectEquals class System {
      * variable {@code out}, has been redirected to a file or other
      * destination that is typically not continuously monitored.
      */
+    @CFComment("This field can be null. The Checker Framework conservatively annotates it as @NonNull, forbidding programs that set it to null.")
     public static final PrintStream err = null;
 
     /* The security manager for the system.
@@ -193,6 +197,7 @@ public final @UsesObjectEquals class System {
      *
      * @since   1.1
      */
+    @CFComment("Null is a legal argument. The Checker Framework conservatively forbids programs that pass null.")
     public static void setIn(@PolyDet InputStream in) {
         checkIO();
         setIn0(in);
@@ -217,6 +222,7 @@ public final @UsesObjectEquals class System {
      *
      * @since   1.1
      */
+    @CFComment("Null is a legal argument. The Checker Framework conservatively forbids programs that pass null.")
     public static void setOut(@PolyDet PrintStream out) {
         checkIO();
         setOut0(out);
@@ -241,6 +247,7 @@ public final @UsesObjectEquals class System {
      *
      * @since   1.1
      */
+    @CFComment("Null is a legal argument. The Checker Framework conservatively forbids programs that pass null.")
     public static void setErr(@PolyDet PrintStream err) {
         checkIO();
         setErr0(err);
