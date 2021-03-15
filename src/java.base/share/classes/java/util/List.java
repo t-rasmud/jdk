@@ -565,7 +565,7 @@ public interface List<E> extends Collection<E> {
      * @return {@code true} if the specified object is equal to this list
      */
     @Pure
-    boolean equals(@GuardSatisfied List<E> this, @Nullable Object o);
+    boolean equals(@GuardSatisfied @PolyNonEmpty List<E> this, @Nullable Object o);
 
     /**
      * Returns the hash code value for this list.  The hash code of a list
@@ -585,7 +585,7 @@ public interface List<E> extends Collection<E> {
      * @see #equals(Object)
      */
     @Pure
-    int hashCode(@GuardSatisfied List<E> this);
+    int hashCode(@GuardSatisfied @PolyNonEmpty List<E> this);
 
 
     // Positional Access Operations
@@ -619,7 +619,7 @@ public interface List<E> extends Collection<E> {
      * @throws IndexOutOfBoundsException if the index is out of range
      *         ({@code index < 0 || index >= size()})
      */
-    E set(@GuardSatisfied List<E> this, @IndexFor({"this"}) int index, E element);
+    E set(@GuardSatisfied @PolyNonEmpty List<E> this, @IndexFor({"this"}) int index, E element);
 
     /**
      * Inserts the specified element at the specified position in this list
@@ -641,7 +641,7 @@ public interface List<E> extends Collection<E> {
      *         ({@code index < 0 || index > size()})
      */
     @ReleasesNoLocks
-    void add(@GuardSatisfied List<E> this, @IndexOrHigh({"this"}) int index, E element);
+    void add(@GuardSatisfied @PolyNonEmpty List<E> this, @IndexOrHigh({"this"}) int index, E element);
 
     /**
      * Removes the element at the specified position in this list (optional
@@ -657,7 +657,7 @@ public interface List<E> extends Collection<E> {
      *         ({@code index < 0 || index >= size()})
      */
     @ReleasesNoLocks
-    E remove(@GuardSatisfied List<E> this, @IndexFor({"this"}) int index);
+    E remove(@GuardSatisfied @PolyNonEmpty List<E> this, @IndexFor({"this"}) int index);
 
 
     // Search Operations
@@ -729,7 +729,7 @@ public interface List<E> extends Collection<E> {
      * @throws IndexOutOfBoundsException if the index is out of range
      *         ({@code index < 0 || index > size()})
      */
-    ListIterator<E> listIterator(@IndexOrHigh({"this"}) int index);
+    ListIterator<E> listIterator(@PolyNonEmpty List<E> this, @IndexOrHigh({"this"}) int index);
 
     // View
 
