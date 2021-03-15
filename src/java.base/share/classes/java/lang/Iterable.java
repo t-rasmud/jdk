@@ -32,6 +32,8 @@ import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.function.Consumer;
 
+import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
+
 /**
  * Implementing this interface allows an object to be the target of the enhanced
  * {@code for} statement (sometimes called the "for-each loop" statement).
@@ -48,7 +50,7 @@ public interface Iterable<T> {
      *
      * @return an Iterator.
      */
-    Iterator<T> iterator();
+    Iterator<T> iterator(@PolyNonEmpty Iterable<T> this);
 
     /**
      * Performs the given action for each element of the {@code Iterable}
@@ -72,7 +74,7 @@ public interface Iterable<T> {
      * @throws NullPointerException if the specified action is null
      * @since 1.8
      */
-    default void forEach(Consumer<? super T> action) {
+    default void forEach(@PolyNonEmpty Iterable<T> this, Consumer<? super T> action) {
         Objects.requireNonNull(action);
         for (T t : this) {
             action.accept(t);

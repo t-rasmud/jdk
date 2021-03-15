@@ -243,7 +243,7 @@ public interface Collection<E> extends Iterable<E> {
      * @return the number of elements in this collection
      */
     @Pure
-    @NonNegative int size(@GuardSatisfied Collection<E> this);
+    @NonNegative int size(@GuardSatisfied @PolyNonEmpty Collection<E> this);
 
     /**
      * Returns {@code true} if this collection contains no elements.
@@ -311,7 +311,7 @@ public interface Collection<E> extends Iterable<E> {
     "methods, because the most useful type for toArray is not expressible",
     "in the surface syntax that the nullness annotations support."})
     @SideEffectFree
-    @PolyNull Object[] toArray(Collection<@PolyNull E> this);
+    @PolyNull Object[] toArray(@PolyNonEmpty Collection<@PolyNull E> this);
 
     /**
      * Returns an array containing all of the elements in this collection;
@@ -464,7 +464,7 @@ public interface Collection<E> extends Iterable<E> {
      * @throws UnsupportedOperationException if the {@code remove} operation
      *         is not supported by this collection
      */
-    boolean remove(@GuardSatisfied Collection<E> this, Object o);
+    boolean remove(@GuardSatisfied @PolyNonEmpty Collection<E> this, Object o);
 
 
     // Bulk Operations
@@ -564,7 +564,7 @@ public interface Collection<E> extends Iterable<E> {
      *         supported.
      * @since 1.8
      */
-    default boolean removeIf(Predicate<? super E> filter) {
+    default boolean removeIf(@PolyNonEmpty Collection<E> this, Predicate<? super E> filter) {
         Objects.requireNonNull(filter);
         boolean removed = false;
         final Iterator<E> each = iterator();
@@ -599,7 +599,7 @@ public interface Collection<E> extends Iterable<E> {
      * @see #remove(Object)
      * @see #contains(Object)
      */
-    boolean retainAll(@GuardSatisfied Collection<E> this, Collection<?> c);
+    boolean retainAll(@GuardSatisfied @PolyNonEmpty Collection<E> this, Collection<?> c);
 
     /**
      * Removes all of the elements from this collection (optional operation).
@@ -719,7 +719,7 @@ public interface Collection<E> extends Iterable<E> {
      */
     @SideEffectFree
     @Override
-    default Spliterator<E> spliterator() {
+    default Spliterator<E> spliterator(@PolyNonEmpty Collection<E> this) {
         return Spliterators.spliterator(this, 0);
     }
 
@@ -738,7 +738,7 @@ public interface Collection<E> extends Iterable<E> {
      * @return a sequential {@code Stream} over the elements in this collection
      * @since 1.8
      */
-    default Stream<E> stream() {
+    default Stream<E> stream(@PolyNonEmpty Collection<E> this) {
         return StreamSupport.stream(spliterator(), false);
     }
 
@@ -759,7 +759,7 @@ public interface Collection<E> extends Iterable<E> {
      * collection
      * @since 1.8
      */
-    default Stream<E> parallelStream() {
+    default Stream<E> parallelStream(@PolyNonEmpty Collection<E> this) {
         return StreamSupport.stream(spliterator(), true);
     }
 }
