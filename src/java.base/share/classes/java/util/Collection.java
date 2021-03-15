@@ -251,7 +251,7 @@ public interface Collection<E> extends Iterable<E> {
      * @return {@code true} if this collection contains no elements
      */
     @Pure
-    boolean isEmpty(@GuardSatisfied Collection<E> this);
+    boolean isEmpty(@GuardSatisfied @PolyNonEmpty Collection<E> this);
 
     /**
      * Returns {@code true} if this collection contains the specified element.
@@ -271,7 +271,7 @@ public interface Collection<E> extends Iterable<E> {
      */
     @CFComment({"lock: not true, because map could contain nulls:  AssertParametersNonNull(\"get(#1)\")"})
     @Pure
-    boolean contains(@GuardSatisfied Collection<E> this, @GuardSatisfied Object o);
+    boolean contains(@GuardSatisfied @PolyNonEmpty Collection<E> this, @GuardSatisfied Object o);
 
     /**
      * Returns an iterator over the elements in this collection.  There are no
@@ -488,7 +488,7 @@ public interface Collection<E> extends Iterable<E> {
      * @see    #contains(Object)
      */
     @Pure
-    boolean containsAll(@GuardSatisfied Collection<E> this, @GuardSatisfied Collection<?> c);
+    boolean containsAll(@GuardSatisfied @PolyNonEmpty Collection<E> this, @GuardSatisfied Collection<?> c);
 
     /**
      * Adds all of the elements in the specified collection to this collection
@@ -515,7 +515,7 @@ public interface Collection<E> extends Iterable<E> {
      * @see #add(Object)
      */
     @EnsuresNonEmpty(value = "this")
-    boolean addAll(@GuardSatisfied Collection<E> this, Collection<? extends E> c);
+    boolean addAll(@GuardSatisfied @PolyNonEmpty Collection<E> this, Collection<? extends E> c);
 
     /**
      * Removes all of this collection's elements that are also contained in the
