@@ -288,7 +288,7 @@ public interface List<E> extends Collection<E> {
      */
     @ReleasesNoLocks
     @EnsuresNonEmpty(value = "this")
-    boolean add(@GuardSatisfied List<E> this, E e);
+    boolean add(@GuardSatisfied @PolyNonEmpty List<E> this, E e);
 
     /**
      * Removes the first occurrence of the specified element from this list,
@@ -311,7 +311,7 @@ public interface List<E> extends Collection<E> {
      * @throws UnsupportedOperationException if the {@code remove} operation
      *         is not supported by this list
      */
-    boolean remove(@GuardSatisfied List<E> this, Object o);
+    boolean remove(@GuardSatisfied @PolyNonEmpty List<E> this, Object o);
 
 
     // Bulk Modification Operations
@@ -358,7 +358,7 @@ public interface List<E> extends Collection<E> {
      *         specified collection prevents it from being added to this list
      * @see #add(Object)
      */
-    boolean addAll(@GuardSatisfied List<E> this, Collection<? extends E> c);
+    boolean addAll(@GuardSatisfied @PolyNonEmpty List<E> this, Collection<? extends E> c);
 
     /**
      * Inserts all of the elements in the specified collection into this
@@ -387,7 +387,7 @@ public interface List<E> extends Collection<E> {
      * @throws IndexOutOfBoundsException if the index is out of range
      *         ({@code index < 0 || index > size()})
      */
-    boolean addAll(@GuardSatisfied List<E> this, @IndexOrHigh({"this"}) int index, Collection<? extends E> c);
+    boolean addAll(@GuardSatisfied @PolyNonEmpty List<E> this, @IndexOrHigh({"this"}) int index, Collection<? extends E> c);
 
     /**
      * Removes from this list all of its elements that are contained in the
@@ -460,7 +460,7 @@ public interface List<E> extends Collection<E> {
      *         (<a href="Collection.html#optional-restrictions">optional</a>)
      * @since 1.8
      */
-    default void replaceAll(UnaryOperator<E> operator) {
+    default void replaceAll(@PolyNonEmpty List<E> this, UnaryOperator<E> operator) {
         Objects.requireNonNull(operator);
         final ListIterator<E> li = this.listIterator();
         while (li.hasNext()) {
@@ -528,7 +528,7 @@ public interface List<E> extends Collection<E> {
      * @since 1.8
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    default void sort(Comparator<? super E> c) {
+    default void sort(@PolyNonEmpty List<E> this, Comparator<? super E> c) {
         Object[] a = this.toArray();
         Arrays.sort(a, (Comparator) c);
         ListIterator<E> i = this.listIterator();
@@ -599,7 +599,7 @@ public interface List<E> extends Collection<E> {
      *         ({@code index < 0 || index >= size()})
      */
     @Pure
-    E get(@GuardSatisfied List<E> this, @IndexFor({"this"}) int index);
+    E get(@GuardSatisfied @PolyNonEmpty List<E> this, @IndexFor({"this"}) int index);
 
     /**
      * Replaces the element at the specified position in this list with the
@@ -680,7 +680,7 @@ public interface List<E> extends Collection<E> {
      *         (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @GTENegativeOne @Pure
-    int indexOf(@GuardSatisfied List<E> this, Object o);
+    int indexOf(@GuardSatisfied @PolyNonEmpty List<E> this, Object o);
 
     /**
      * Returns the index of the last occurrence of the specified element
@@ -700,7 +700,7 @@ public interface List<E> extends Collection<E> {
      *         (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @GTENegativeOne @Pure
-    int lastIndexOf(@GuardSatisfied List<E> this, Object o);
+    int lastIndexOf(@GuardSatisfied @PolyNonEmpty List<E> this, Object o);
 
 
     // List Iterators
@@ -712,7 +712,7 @@ public interface List<E> extends Collection<E> {
      * @return a list iterator over the elements in this list (in proper
      *         sequence)
      */
-    ListIterator<E> listIterator();
+    ListIterator<E> listIterator(@PolyNonEmpty List<E> this);
 
     /**
      * Returns a list iterator over the elements in this list (in proper
