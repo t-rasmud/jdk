@@ -32,6 +32,8 @@ import org.checkerframework.dataflow.qual.SideEffectFree;
 import org.checkerframework.framework.qual.AnnotatedFor;
 import org.checkerframework.framework.qual.CFComment;
 
+import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
+
 /**
  * A {@link Set} that further provides a <i>total ordering</i> on its elements.
  * The elements are ordered using their {@linkplain Comparable natural
@@ -125,7 +127,7 @@ public interface SortedSet<E> extends Set<E> {
      *         of its elements
      */
     @Pure
-    @Nullable Comparator<? super E> comparator(@GuardSatisfied SortedSet<E> this);
+    @Nullable Comparator<? super E> comparator(@GuardSatisfied @PolyNonEmpty SortedSet<E> this);
 
     /**
      * Returns a view of the portion of this set whose elements range
@@ -159,7 +161,7 @@ public interface SortedSet<E> extends Set<E> {
      *         {@code toElement} lies outside the bounds of the range
      */
     @SideEffectFree
-    SortedSet<E> subSet(@GuardSatisfied SortedSet<E> this, @GuardSatisfied E fromElement, @GuardSatisfied E toElement);
+    @PolyNonEmpty SortedSet<E> subSet(@GuardSatisfied @PolyNonEmpty SortedSet<E> this, @GuardSatisfied E fromElement, @GuardSatisfied E toElement);
 
     /**
      * Returns a view of the portion of this set whose elements are
@@ -187,7 +189,7 @@ public interface SortedSet<E> extends Set<E> {
      *         bounds of the range
      */
     @SideEffectFree
-    SortedSet<E> headSet(@GuardSatisfied SortedSet<E> this, E toElement);
+    @PolyNonEmpty SortedSet<E> headSet(@GuardSatisfied @PolyNonEmpty SortedSet<E> this, E toElement);
 
     /**
      * Returns a view of the portion of this set whose elements are
@@ -215,7 +217,7 @@ public interface SortedSet<E> extends Set<E> {
      *         bounds of the range
      */
     @SideEffectFree
-    SortedSet<E> tailSet(@GuardSatisfied SortedSet<E> this, E fromElement);
+    @PolyNonEmpty SortedSet<E> tailSet(@GuardSatisfied @PolyNonEmpty SortedSet<E> this, E fromElement);
 
     /**
      * Returns the first (lowest) element currently in this set.
@@ -224,7 +226,7 @@ public interface SortedSet<E> extends Set<E> {
      * @throws NoSuchElementException if this set is empty
      */
     @SideEffectFree
-    E first(@GuardSatisfied SortedSet<E> this);
+    E first(@GuardSatisfied @PolyNonEmpty SortedSet<E> this);
 
     /**
      * Returns the last (highest) element currently in this set.
@@ -233,7 +235,7 @@ public interface SortedSet<E> extends Set<E> {
      * @throws NoSuchElementException if this set is empty
      */
     @SideEffectFree
-    E last(@GuardSatisfied SortedSet<E> this);
+    E last(@GuardSatisfied @PolyNonEmpty SortedSet<E> this);
 
     /**
      * Creates a {@code Spliterator} over the elements in this sorted set.
