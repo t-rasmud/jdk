@@ -442,7 +442,7 @@ public interface Collection<E> extends Iterable<E> {
      *         time due to insertion restrictions
      */
     @EnsuresNonEmpty(value = "this")
-    boolean add(@GuardSatisfied Collection<E> this, E e);
+    boolean add(@GuardSatisfied @PolyNonEmpty Collection<E> this, E e);
 
     /**
      * Removes a single instance of the specified element from this
