@@ -365,7 +365,7 @@ public interface Collection<E> extends Iterable<E> {
      * @throws NullPointerException if the specified array is null
      */
     @SideEffectFree
-    <T> @Nullable T @PolyNull [] toArray(T @PolyNull [] a);
+    <T> @Nullable T @PolyNull [] toArray(@PolyNonEmpty Collection<E> this, T @PolyNull [] a);
 
     /**
      * Returns an array containing all of the elements in this collection,
@@ -540,7 +540,7 @@ public interface Collection<E> extends Iterable<E> {
      * @see #remove(Object)
      * @see #contains(Object)
      */
-    boolean removeAll(@GuardSatisfied Collection<E> this, Collection<?> c);
+    boolean removeAll(@GuardSatisfied @PolyNonEmpty Collection<E> this, Collection<?> c);
 
     /**
      * Removes all of the elements of this collection that satisfy the given
@@ -647,7 +647,7 @@ public interface Collection<E> extends Iterable<E> {
      * @see List#equals(Object)
      */
     @Pure
-    boolean equals(@GuardSatisfied Collection<E> this, @GuardSatisfied @Nullable Object o);
+    boolean equals(@GuardSatisfied @PolyNonEmpty Collection<E> this, @GuardSatisfied @Nullable Object o);
 
     /**
      * Returns the hash code value for this collection.  While the
@@ -665,7 +665,7 @@ public interface Collection<E> extends Iterable<E> {
      * @see Object#equals(Object)
      */
     @Pure
-    int hashCode(@GuardSatisfied Collection<E> this);
+    int hashCode(@GuardSatisfied @PolyNonEmpty Collection<E> this);
 
     /**
      * Creates a {@link Spliterator} over the elements in this collection.
