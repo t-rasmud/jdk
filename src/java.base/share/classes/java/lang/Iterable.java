@@ -102,7 +102,7 @@ public interface Iterable<T> {
      * {@code Iterable}.
      * @since 1.8
      */
-    default Spliterator<T> spliterator() {
+    default Spliterator<T> spliterator(@PolyNonEmpty Iterable<T> this) {
         return Spliterators.spliteratorUnknownSize(iterator(), 0);
     }
 }
