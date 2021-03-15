@@ -608,7 +608,7 @@ public interface Collection<E> extends Iterable<E> {
      * @throws UnsupportedOperationException if the {@code clear} operation
      *         is not supported by this collection
      */
-    void clear(@GuardSatisfied Collection<E> this);
+    void clear(@GuardSatisfied @PolyNonEmpty Collection<E> this);
 
 
     // Comparison and hashing
