@@ -545,7 +545,7 @@ public interface List<E> extends Collection<E> {
      * @throws UnsupportedOperationException if the {@code clear} operation
      *         is not supported by this list
      */
-    void clear(@GuardSatisfied List<E> this);
+    void clear(@GuardSatisfied @PolyNonEmpty List<E> this);
 
 
     // Comparison and hashing
