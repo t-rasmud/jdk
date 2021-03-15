@@ -416,7 +416,7 @@ public interface Set<E> extends Collection<E> {
      * @return {@code true} if the specified object is equal to this set
      */
     @Pure
-    boolean equals(@GuardSatisfied Set<E> this, @GuardSatisfied @Nullable Object o);
+    boolean equals(@PolyNonEmpty @GuardSatisfied Set<E> this, @GuardSatisfied @Nullable Object o);
 
     /**
      * Returns the hash code value for this set.  The hash code of a set is
@@ -432,7 +432,7 @@ public interface Set<E> extends Collection<E> {
      * @see Set#equals(Object)
      */
     @Pure
-    int hashCode(@GuardSatisfied Set<E> this);
+    int hashCode(@GuardSatisfied @PolyNonEmpty Set<E> this);
 
     /**
      * Creates a {@code Spliterator} over the elements in this set.
