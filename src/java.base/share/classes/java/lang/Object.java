@@ -177,7 +177,7 @@ public class Object {
      */
     @Pure
     @EnsuresNonNullIf(expression="#1", result=true)
-    public boolean equals(@GuardSatisfied Object this, @GuardSatisfied @Nullable Object obj) {
+    public boolean equals(@GuardSatisfied @PolyNonEmpty Object this, @GuardSatisfied @Nullable Object obj) {
         return (this == obj);
     }
 
@@ -279,6 +279,7 @@ public class Object {
      * monitor. If any threads are waiting on this object, one of them
      * is chosen to be awakened. The choice is arbitrary and occurs at
      * the discretion of the implementation. A thread waits on an object's
+     * monitor by calling one of the {@code wait} methods.
      * monitor by calling one of the {@code wait} methods.
      * <p>
      * The awakened thread will not be able to proceed until the current
