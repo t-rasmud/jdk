@@ -28,6 +28,7 @@ package java.util;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.lock.qual.GuardSatisfied;
 import org.checkerframework.checker.lock.qual.ReleasesNoLocks;
+import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
 import org.checkerframework.checker.nullness.qual.EnsuresKeyFor;
 import org.checkerframework.checker.nullness.qual.EnsuresKeyForIf;
 import org.checkerframework.checker.nullness.qual.KeyFor;
@@ -182,7 +183,7 @@ public interface Map<K, V> {
      * @return the number of key-value mappings in this map
      */
     @Pure
-    @NonNegative int size(@GuardSatisfied Map<K, V> this);
+    @NonNegative int size(@GuardSatisfied @PolyNonEmpty Map<K, V> this);
 
     /**
      * Returns {@code true} if this map contains no key-value mappings.
@@ -190,7 +191,7 @@ public interface Map<K, V> {
      * @return {@code true} if this map contains no key-value mappings
      */
     @Pure
-    boolean isEmpty(@GuardSatisfied Map<K, V> this);
+    boolean isEmpty(@GuardSatisfied @PolyNonEmpty Map<K, V> this);
 
     /**
      * Returns {@code true} if this map contains a mapping for the specified
@@ -211,7 +212,7 @@ public interface Map<K, V> {
      */
     @EnsuresKeyForIf(expression={"#1"}, result=true, map={"this"})
     @Pure
-    boolean containsKey(@GuardSatisfied Map<K, V> this, @GuardSatisfied Object key);
+    boolean containsKey(@GuardSatisfied @PolyNonEmpty Map<K, V> this, @GuardSatisfied Object key);
 
     /**
      * Returns {@code true} if this map maps one or more keys to the
@@ -232,7 +233,7 @@ public interface Map<K, V> {
      * (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
      */
     @Pure
-    boolean containsValue(@GuardSatisfied Map<K, V> this, @GuardSatisfied Object value);
+    boolean containsValue(@GuardSatisfied @PolyNonEmpty Map<K, V> this, @GuardSatisfied Object value);
 
     /**
      * Returns the value to which the specified key is mapped,
@@ -261,7 +262,7 @@ public interface Map<K, V> {
      * (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
      */
     @Pure
-    @Nullable V get(@GuardSatisfied Map<K, V> this, @GuardSatisfied Object key);
+    @Nullable V get(@GuardSatisfied @PolyNonEmpty Map<K, V> this, @GuardSatisfied Object key);
 
     // Modification Operations
 
@@ -291,7 +292,7 @@ public interface Map<K, V> {
      */
     @ReleasesNoLocks
     @EnsuresKeyFor(value={"#1"}, map={"this"})
-    @Nullable V put(@GuardSatisfied Map<K, V> this, K key, V value);
+    @Nullable V put(@GuardSatisfied @PolyNonEmpty Map<K, V> this, K key, V value);
 
     /**
      * Removes the mapping for a key from this map if it is present
@@ -347,7 +348,7 @@ public interface Map<K, V> {
      * @throws IllegalArgumentException if some property of a key or value in
      *         the specified map prevents it from being stored in this map
      */
-    void putAll(@GuardSatisfied Map<K, V> this, Map<? extends K, ? extends V> m);
+    void putAll(@GuardSatisfied @PolyNonEmpty Map<K, V> this, Map<? extends K, ? extends V> m);
 
     /**
      * Removes all of the mappings from this map (optional operation).
@@ -356,7 +357,7 @@ public interface Map<K, V> {
      * @throws UnsupportedOperationException if the {@code clear} operation
      *         is not supported by this map
      */
-    void clear(@GuardSatisfied Map<K, V> this);
+    void clear(@GuardSatisfied @PolyNonEmpty Map<K, V> this);
 
 
     // Views
@@ -377,7 +378,7 @@ public interface Map<K, V> {
      * @return a set view of the keys contained in this map
      */
     @SideEffectFree
-    Set<@KeyFor({"this"}) K> keySet(@GuardSatisfied Map<K, V> this);
+    @PolyNonEmpty Set<@KeyFor({"this"}) K> keySet(@GuardSatisfied @PolyNonEmpty Map<K, V> this);
 
     /**
      * Returns a {@link Collection} view of the values contained in this map.
@@ -395,7 +396,7 @@ public interface Map<K, V> {
      * @return a collection view of the values contained in this map
      */
     @SideEffectFree
-    Collection<V> values(@GuardSatisfied Map<K, V> this);
+    @PolyNonEmpty Collection<V> values(@GuardSatisfied @PolyNonEmpty Map<K, V> this);
 
     /**
      * Returns a {@link Set} view of the mappings contained in this map.
@@ -414,7 +415,7 @@ public interface Map<K, V> {
      * @return a set view of the mappings contained in this map
      */
     @SideEffectFree
-    Set<Map.Entry<@KeyFor({"this"}) K, V>> entrySet(@GuardSatisfied Map<K, V> this);
+    @PolyNonEmpty Set<Map.Entry<@KeyFor({"this"}) K, V>> entrySet(@GuardSatisfied @PolyNonEmpty Map<K, V> this);
 
     /**
      * A map entry (key-value pair).  The {@code Map.entrySet} method returns
@@ -604,7 +605,7 @@ public interface Map<K, V> {
      * @param o object to be compared for equality with this map
      * @return {@code true} if the specified object is equal to this map
      */
-    boolean equals(@GuardSatisfied Map<K, V> this, @GuardSatisfied @Nullable Object o);
+    boolean equals(@GuardSatisfied @PolyNonEmpty Map<K, V> this, @GuardSatisfied @Nullable Object o);
 
     /**
      * Returns the hash code value for this map.  The hash code of a map is
@@ -619,7 +620,7 @@ public interface Map<K, V> {
      * @see Object#equals(Object)
      * @see #equals(Object)
      */
-    int hashCode(@GuardSatisfied Map<K, V> this);
+    int hashCode(@GuardSatisfied @PolyNonEmpty Map<K, V> this);
 
     // Defaultable methods
 
@@ -645,7 +646,7 @@ public interface Map<K, V> {
      * (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
      * @since 1.8
      */
-    default V getOrDefault(Object key, V defaultValue) {
+    default V getOrDefault(@PolyNonEmpty Map<K, V> this, Object key, V defaultValue) {
         V v;
         return (((v = get(key)) != null) || containsKey(key))
             ? v
@@ -677,7 +678,7 @@ public interface Map<K, V> {
      * removed during iteration
      * @since 1.8
      */
-    default void forEach(BiConsumer<? super K, ? super V> action) {
+    default void forEach(@PolyNonEmpty Map<K, V> this, BiConsumer<? super K, ? super V> action) {
         Objects.requireNonNull(action);
         for (Map.Entry<K, V> entry : entrySet()) {
             K k;
@@ -732,7 +733,7 @@ public interface Map<K, V> {
      * removed during iteration
      * @since 1.8
      */
-    default void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
+    default void replaceAll(@PolyNonEmpty Map<K, V> this, BiFunction<? super K, ? super V, ? extends V> function) {
         Objects.requireNonNull(function);
         for (Map.Entry<K, V> entry : entrySet()) {
             K k;
@@ -801,7 +802,7 @@ public interface Map<K, V> {
      * @since 1.8
      */
     @EnsuresKeyFor(value={"#1"}, map={"this"})
-    default @Nullable V putIfAbsent(K key, V value) {
+    default @Nullable V putIfAbsent(@PolyNonEmpty Map<K, V> this, K key, V value) {
         V v = get(key);
         if (v == null) {
             v = put(key, value);
@@ -844,7 +845,7 @@ public interface Map<K, V> {
      *         (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
      * @since 1.8
      */
-    default boolean remove(Object key, Object value) {
+    default boolean remove(@PolyNonEmpty Map<K, V> this, Object key, Object value) {
         Object curValue = get(key);
         if (!Objects.equals(curValue, value) ||
             (curValue == null && !containsKey(key))) {
@@ -896,7 +897,7 @@ public interface Map<K, V> {
      *         or value prevents it from being stored in this map
      * @since 1.8
      */
-    default boolean replace(K key, V oldValue, V newValue) {
+    default boolean replace(@PolyNonEmpty Map<K, V> this, K key, V oldValue, V newValue) {
         Object curValue = get(key);
         if (!Objects.equals(curValue, oldValue) ||
             (curValue == null && !containsKey(key))) {
@@ -944,7 +945,7 @@ public interface Map<K, V> {
      *         or value prevents it from being stored in this map
      * @since 1.8
      */
-    default @Nullable V replace(K key, V value) {
+    default @Nullable V replace(@PolyNonEmpty Map<K, V> this, K key, V value) {
         V curValue;
         if (((curValue = get(key)) != null) || containsKey(key)) {
             curValue = put(key, value);
@@ -1026,7 +1027,7 @@ public interface Map<K, V> {
      *         (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
      * @since 1.8
      */
-    default V computeIfAbsent(K key,
+    default V computeIfAbsent(@PolyNonEmpty Map<K, V> this, K key,
             Function<? super K, ? extends @Nullable V> mappingFunction) {
         Objects.requireNonNull(mappingFunction);
         V v;
@@ -1195,7 +1196,7 @@ public interface Map<K, V> {
      *         (<a href="{@docRoot}/java.base/java/util/Collection.html#optional-restrictions">optional</a>)
      * @since 1.8
      */
-    default V compute(K key,
+    default V compute(@PolyNonEmpty Map<K, V> this, K key,
             BiFunction<? super K, ? super @Nullable V, ? extends @Nullable V> remappingFunction) {
         Objects.requireNonNull(remappingFunction);
         V oldValue = get(key);
@@ -1296,7 +1297,7 @@ public interface Map<K, V> {
     // It would be more flexible to make the return type of remappingFunction be `@Nullable V`.  A
     // remappingFunction that returns null is is probably rare, and these annotations accommodate
     // the majority of uses that don't return null.
-    default V merge(K key, V value,
+    default V merge(@PolyNonEmpty Map<K, V> this, K key, V value,
             BiFunction<? super V, ? super V, ? extends V> remappingFunction) {
         Objects.requireNonNull(remappingFunction);
         Objects.requireNonNull(value);
