@@ -133,7 +133,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         of its keys
      */
     @Pure
-    @Nullable Comparator<? super K> comparator(@GuardSatisfied SortedMap<K, V> this);
+    @Nullable Comparator<? super K> comparator(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this);
 
     /**
      * Returns a view of the portion of this map whose keys range from
@@ -165,7 +165,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         outside the bounds of the range
      */
     @SideEffectFree
-    SortedMap<K,V> subMap(@GuardSatisfied SortedMap<K, V> this, @GuardSatisfied K fromKey, @GuardSatisfied K toKey);
+    @PolyNonEmpty SortedMap<K,V> subMap(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this, @GuardSatisfied K fromKey, @GuardSatisfied K toKey);
 
     /**
      * Returns a view of the portion of this map whose keys are
@@ -193,7 +193,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         bounds of the range
      */
     @SideEffectFree
-    SortedMap<K,V> headMap(@GuardSatisfied SortedMap<K, V> this, K toKey);
+    @PolyNonEmpty SortedMap<K,V> headMap(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this, K toKey);
 
     /**
      * Returns a view of the portion of this map whose keys are
@@ -221,7 +221,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         bounds of the range
      */
     @SideEffectFree
-    @NonEmpty SortedMap<K,V> tailMap(@GuardSatisfied SortedMap<K, V> this, K fromKey);
+    @NonEmpty SortedMap<K,V> tailMap(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this, K fromKey);
 
     /**
      * Returns the first (lowest) key currently in this map.
@@ -230,7 +230,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      * @throws NoSuchElementException if this map is empty
      */
     @SideEffectFree
-    @KeyFor("this") K firstKey(@GuardSatisfied SortedMap<K, V> this);
+    @KeyFor("this") K firstKey(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this);
 
     /**
      * Returns the last (highest) key currently in this map.
@@ -239,7 +239,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      * @throws NoSuchElementException if this map is empty
      */
     @SideEffectFree
-    @KeyFor("this") K lastKey(@GuardSatisfied SortedMap<K, V> this);
+    @KeyFor("this") K lastKey(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this);
 
     /**
      * Returns a {@link Set} view of the keys contained in this map.
@@ -280,7 +280,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         sorted in ascending key order
      */
     @SideEffectFree
-    Collection<V> values(@GuardSatisfied SortedMap<K, V> this);
+    @PolyNonEmpty Collection<V> values(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this);
 
     /**
      * Returns a {@link Set} view of the mappings contained in this map.
@@ -301,5 +301,5 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         sorted in ascending key order
      */
     @SideEffectFree
-    Set<Map.Entry<@KeyFor({"this"}) K, V>> entrySet(@GuardSatisfied SortedMap<K, V> this);
+    @PolyNonEmpty Set<Map.Entry<@KeyFor({"this"}) K, V>> entrySet(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this);
 }
