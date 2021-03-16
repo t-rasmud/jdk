@@ -127,7 +127,7 @@ public class Object {
      */
     @Pure
     @HotSpotIntrinsicCandidate
-    public native int hashCode(@GuardSatisfied @PolyNonEmpty Object this);
+    public native int hashCode(@GuardSatisfied Object this);
 
     /**
      * Indicates whether some other object is "equal to" this one.
@@ -177,7 +177,7 @@ public class Object {
      */
     @Pure
     @EnsuresNonNullIf(expression="#1", result=true)
-    public boolean equals(@GuardSatisfied @PolyNonEmpty Object this, @GuardSatisfied @Nullable Object obj) {
+    public boolean equals(@GuardSatisfied Object this, @GuardSatisfied @Nullable Object obj) {
         return (this == obj);
     }
 
