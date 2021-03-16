@@ -118,7 +118,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    Map.@Nullable Entry<K,V> lowerEntry(K key);
+    Map.@Nullable Entry<K,V> lowerEntry(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns the greatest key strictly less than the given key, or
@@ -132,7 +132,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    @Nullable K lowerKey(K key);
+    @Nullable K lowerKey(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns a key-value mapping associated with the greatest key
@@ -147,7 +147,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    Map.@Nullable Entry<K,V> floorEntry(K key);
+    Map.@Nullable Entry<K,V> floorEntry(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns the greatest key less than or equal to the given key,
@@ -161,7 +161,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    @Nullable K floorKey(K key);
+    @Nullable K floorKey(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns a key-value mapping associated with the least key
@@ -176,7 +176,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    Map.@Nullable Entry<K,V> ceilingEntry(K key);
+    Map.@Nullable Entry<K,V> ceilingEntry(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns the least key greater than or equal to the given key,
@@ -190,7 +190,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    @Nullable K ceilingKey(K key);
+    @Nullable K ceilingKey(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns a key-value mapping associated with the least key
@@ -205,7 +205,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    Map.@Nullable Entry<K,V> higherEntry(K key);
+    Map.@Nullable Entry<K,V> higherEntry(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns the least key strictly greater than the given key, or
@@ -219,7 +219,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws NullPointerException if the specified key is null
      *         and this map does not permit null keys
      */
-    @Nullable K higherKey(K key);
+    @Nullable K higherKey(@PolyNonEmpty NavigableMap<K,V> this, K key);
 
     /**
      * Returns a key-value mapping associated with the least
@@ -228,7 +228,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @return an entry with the least key,
      *         or {@code null} if this map is empty
      */
-    Map.@Nullable Entry<K,V> firstEntry();
+    Map.@Nullable Entry<K,V> firstEntry(@PolyNonEmpty NavigableMap<K,V> this);
 
     /**
      * Returns a key-value mapping associated with the greatest
@@ -237,7 +237,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @return an entry with the greatest key,
      *         or {@code null} if this map is empty
      */
-    Map.@Nullable Entry<K,V> lastEntry();
+    Map.@Nullable Entry<K,V> lastEntry(@PolyNonEmpty NavigableMap<K,V> this);
 
     /**
      * Removes and returns a key-value mapping associated with
@@ -246,7 +246,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @return the removed first entry of this map,
      *         or {@code null} if this map is empty
      */
-    Map.@Nullable Entry<K,V> pollFirstEntry(@GuardSatisfied NavigableMap<K, V> this);
+    Map.@Nullable Entry<K,V> pollFirstEntry(@GuardSatisfied @PolyNonEmpty NavigableMap<K, V> this);
 
     /**
      * Removes and returns a key-value mapping associated with
@@ -255,7 +255,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @return the removed last entry of this map,
      *         or {@code null} if this map is empty
      */
-    Map.@Nullable Entry<K,V> pollLastEntry(@GuardSatisfied NavigableMap<K, V> this);
+    Map.@Nullable Entry<K,V> pollLastEntry(@GuardSatisfied @PolyNonEmpty NavigableMap<K, V> this);
 
     /**
      * Returns a reverse order view of the mappings contained in this map.
