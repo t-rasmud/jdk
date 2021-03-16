@@ -161,7 +161,7 @@ public interface Set<E> extends Collection<E> {
      * (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @Pure
-    boolean contains(@GuardSatisfied Set<E> this, @GuardSatisfied Object o);
+    boolean contains(@GuardSatisfied @PolyNonEmpty Set<E> this, @GuardSatisfied Object o);
 
     /**
      * Returns an iterator over the elements in this set.  The elements are
@@ -190,7 +190,7 @@ public interface Set<E> extends Collection<E> {
      * @return an array containing all the elements in this set
      */
     @SideEffectFree
-    @PolyNull Object[] toArray(Set<@PolyNull E> this);
+    @PolyNull Object[] toArray(@PolyNonEmpty Set<@PolyNull E> this);
 
     /**
      * Returns an array containing all of the elements in this set; the
@@ -235,7 +235,7 @@ public interface Set<E> extends Collection<E> {
      * @throws NullPointerException if the specified array is null
      */
     @SideEffectFree
-    <T> @Nullable T @PolyNull [] toArray(T @PolyNull [] a);
+    <T> @Nullable T @PolyNull [] toArray(@PolyNonEmpty Set<E> this, T @PolyNull [] a);
 
 
     // Modification Operations
@@ -295,7 +295,7 @@ public interface Set<E> extends Collection<E> {
      * @throws UnsupportedOperationException if the {@code remove} operation
      *         is not supported by this set
      */
-    boolean remove(@GuardSatisfied Set<E> this, Object o);
+    boolean remove(@GuardSatisfied @PolyNonEmpty Set<E> this, Object o);
 
 
     // Bulk Operations
@@ -320,7 +320,7 @@ public interface Set<E> extends Collection<E> {
      * @see    #contains(Object)
      */
     @Pure
-    boolean containsAll(@GuardSatisfied Set<E> this, @GuardSatisfied Collection<?> c);
+    boolean containsAll(@PolyNonEmpty @GuardSatisfied Set<E> this, @GuardSatisfied Collection<?> c);
 
     /**
      * Adds all of the elements in the specified collection to this set if
@@ -367,7 +367,7 @@ public interface Set<E> extends Collection<E> {
      *         or if the specified collection is null
      * @see #remove(Object)
      */
-    boolean retainAll(@GuardSatisfied Set<E> this, Collection<?> c);
+    boolean retainAll(@GuardSatisfied @PolyNonEmpty Set<E> this, Collection<?> c);
 
     /**
      * Removes from this set all of its elements that are contained in the
@@ -390,7 +390,7 @@ public interface Set<E> extends Collection<E> {
      * @see #remove(Object)
      * @see #contains(Object)
      */
-    boolean removeAll(@GuardSatisfied Set<E> this, Collection<?> c);
+    boolean removeAll(@GuardSatisfied @PolyNonEmpty Set<E> this, Collection<?> c);
 
     /**
      * Removes all of the elements from this set (optional operation).
@@ -399,7 +399,7 @@ public interface Set<E> extends Collection<E> {
      * @throws UnsupportedOperationException if the {@code clear} method
      *         is not supported by this set
      */
-    void clear(@GuardSatisfied Set<E> this);
+    void clear(@GuardSatisfied @PolyNonEmpty Set<E> this);
 
 
     // Comparison and hashing
