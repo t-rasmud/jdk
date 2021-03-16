@@ -165,7 +165,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         outside the bounds of the range
      */
     @SideEffectFree
-    @PolyNonEmpty SortedMap<K,V> subMap(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this, @GuardSatisfied K fromKey, @GuardSatisfied K toKey);
+    @NonEmpty SortedMap<K,V> subMap(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this, @GuardSatisfied K fromKey, @GuardSatisfied K toKey);
 
     /**
      * Returns a view of the portion of this map whose keys are
@@ -193,7 +193,7 @@ public interface SortedMap<K,V> extends Map<K,V> {
      *         bounds of the range
      */
     @SideEffectFree
-    @PolyNonEmpty SortedMap<K,V> headMap(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this, K toKey);
+    @NonEmpty SortedMap<K,V> headMap(@GuardSatisfied @PolyNonEmpty SortedMap<K, V> this, K toKey);
 
     /**
      * Returns a view of the portion of this map whose keys are
