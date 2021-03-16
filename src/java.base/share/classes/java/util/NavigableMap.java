@@ -36,6 +36,7 @@
 package java.util;
 
 import org.checkerframework.checker.lock.qual.GuardSatisfied;
+import org.checkerframework.checker.nonempty.qual.PolyNonEmpty;
 import org.checkerframework.checker.nullness.qual.KeyFor;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.SideEffectFree;
@@ -272,7 +273,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @return a reverse order view of this map
      */
     @SideEffectFree
-    NavigableMap<K,V> descendingMap();
+    @PolyNonEmpty NavigableMap<K,V> descendingMap(@PolyNonEmpty NavigableMap<K,V> this);
 
     /**
      * Returns a {@link NavigableSet} view of the keys contained in this map.
@@ -289,7 +290,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @return a navigable set view of the keys in this map
      */
     @SideEffectFree
-    NavigableSet<@KeyFor({"this"}) K> navigableKeySet();
+    @PolyNonEmpty NavigableSet<@KeyFor({"this"}) K> navigableKeySet(@PolyNonEmpty NavigableMap<K,V> this);
 
     /**
      * Returns a reverse order {@link NavigableSet} view of the keys contained in this map.
@@ -306,7 +307,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @return a reverse order navigable set view of the keys in this map
      */
     @SideEffectFree
-    NavigableSet<@KeyFor({"this"}) K> descendingKeySet();
+    @PolyNonEmpty NavigableSet<@KeyFor({"this"}) K> descendingKeySet(@PolyNonEmpty NavigableMap<K,V> this);
 
     /**
      * Returns a view of the portion of this map whose keys range from
@@ -343,7 +344,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      *         outside the bounds of the range
      */
     @SideEffectFree
-    NavigableMap<K,V> subMap(K fromKey, boolean fromInclusive,
+    @PolyNonEmpty NavigableMap<K,V> subMap(@PolyNonEmpty NavigableMap<K,V> this, K fromKey, boolean fromInclusive,
                              K toKey,   boolean toInclusive);
 
     /**
@@ -374,7 +375,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      *         bounds of the range
      */
     @SideEffectFree
-    NavigableMap<K,V> headMap(K toKey, boolean inclusive);
+    @PolyNonEmpty NavigableMap<K,V> headMap(@PolyNonEmpty NavigableMap<K,V> this, K toKey, boolean inclusive);
 
     /**
      * Returns a view of the portion of this map whose keys are greater than (or
@@ -404,7 +405,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      *         bounds of the range
      */
     @SideEffectFree
-    NavigableMap<K,V> tailMap(K fromKey, boolean inclusive);
+    @PolyNonEmpty NavigableMap<K,V> tailMap(@PolyNonEmpty NavigableMap<K,V> this, K fromKey, boolean inclusive);
 
     /**
      * {@inheritDoc}
@@ -416,7 +417,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws IllegalArgumentException {@inheritDoc}
      */
     @SideEffectFree
-    SortedMap<K,V> subMap(K fromKey, K toKey);
+    @PolyNonEmpty SortedMap<K,V> subMap(@PolyNonEmpty NavigableMap<K,V> this, K fromKey, K toKey);
 
     /**
      * {@inheritDoc}
@@ -428,7 +429,7 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws IllegalArgumentException {@inheritDoc}
      */
     @SideEffectFree
-    SortedMap<K,V> headMap(K toKey);
+    @PolyNonEmpty SortedMap<K,V> headMap(@PolyNonEmpty NavigableMap<K,V> this, K toKey);
 
     /**
      * {@inheritDoc}
@@ -440,5 +441,5 @@ public interface NavigableMap<K,V> extends SortedMap<K,V> {
      * @throws IllegalArgumentException {@inheritDoc}
      */
     @SideEffectFree
-    SortedMap<K,V> tailMap(K fromKey);
+    @PolyNonEmpty SortedMap<K,V> tailMap(@PolyNonEmpty NavigableMap<K,V> this, K fromKey);
 }
